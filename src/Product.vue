@@ -15,6 +15,16 @@
           { 'id': 10, 'name': 'J', 'unit_price': 29, 'quantity': 2, description: '<b>genial</b>'},
         ]
       }
+    },
+    computed: {
+      productsSortedByPriceDesc() {
+        return this.products.sort((a, b) => b.unit_price - a.unit_price);
+      }
+    },
+    methods: {
+      isHigherPrice(product) {
+        return product.unit_price === this.productsSortedByPriceDesc[0].unit_price;
+      }
     }
   }
 </script>
@@ -23,7 +33,7 @@
   <div>
     <h1>Nos produits</h1>
     <div class="products" v-if="products.length > 0">
-      <div class="product" v-for="product in products" :key="product.id">
+      <div :class="{'best' : isHigherPrice(product) }" v-for="product in productsSortedByPriceDesc" :key="product.id">
         <h3>{{product.name}}</h3>
 
         <div>
@@ -43,5 +53,7 @@
 </template>
 
 <style scoped>
-
+  .best {
+    border: 3px solid red;
+  }
 </style>
