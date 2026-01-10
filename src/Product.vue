@@ -22,10 +22,22 @@
 <template>
   <div>
     <h1>Nos produits</h1>
-    <div>
+    <div class="products" v-if="products.length > 0">
       <div class="product" v-for="product in products" :key="product.id">
         <h3>{{product.name}}</h3>
+
+        <div>
+          <p>
+            <b>Prix unitaire:</b> {{ product.unit_price }} € <br>
+            <b>Quantité:</b> {{ product.quantity }} en stock
+          </p>
+          <div v-html="product.description">
+          </div>
+        </div>
       </div>
+    </div>
+    <div v-else>
+      <p>Pas de produits en BDD</p>
     </div>
   </div>
 </template>
