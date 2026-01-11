@@ -1,59 +1,58 @@
 <script>
-  export default {
-    data () {
-      return {
-        products: [
-          { 'id': 1, 'name': 'A', 'unit_price': 10, 'quantity': 10, description: '<b>genial</b>'},
-          { 'id': 2, 'name': 'B', 'unit_price': 14, 'quantity': 5, description: '<b>genial 2</b>'},
-          { 'id': 3, 'name': 'C', 'unit_price': 130, 'quantity': 3, description: '<b>genial 3</b>'},
-          { 'id': 4, 'name': 'D', 'unit_price': 45, 'quantity': 9, description: '<b>genial 4</b>'},
-          { 'id': 5, 'name': 'E', 'unit_price': 23, 'quantity': 15, description: '<b>genial 5</b>'},
-          { 'id': 6, 'name': 'F', 'unit_price': 76, 'quantity': 19, description: '<b>genial</b>'},
-          { 'id': 7, 'name': 'G', 'unit_price': 90, 'quantity': 12, description: '<b>genial</b>'},
-          { 'id': 8, 'name': 'H', 'unit_price': 84, 'quantity': 45, description: '<b>genial</b>'},
-          { 'id': 9, 'name': 'I', 'unit_price': 1, 'quantity': 90, description: '<b>genial</b>'},
-          { 'id': 10, 'name': 'J', 'unit_price': 29, 'quantity': 2, description: '<b>genial</b>'},
-        ]
-      }
+export default {
+  data() {
+    return {
+      products: [
+        {'id': 1, 'name': 'Produit A', 'unit_price': 10, 'quantity': 5, 'description': '<b>genial</b>'},
+        {'id': 2, 'name': 'Produit B', 'unit_price': 140, 'quantity': 4, 'description': '<b style="color: green;">On valide</b>'},
+        {'id': 3, 'name': 'Produit C', 'unit_price': 15, 'quantity': 5, 'description': null},
+        {'id': 4, 'name': 'Produit D', 'unit_price': 12, 'quantity': 8, 'description': 'sans commentaire'},
+        {'id': 5, 'name': 'Produit E', 'unit_price': 4, 'quantity': 5, 'description': '<b>ok</b>'},
+        {'id': 6, 'name': 'Produit F', 'unit_price': 160, 'quantity': 6, 'description': '<b>cool</b>'},
+        {'id': 7, 'name': 'Produit G', 'unit_price': 105, 'quantity': 5, 'description': '<b>bof</b>'},
+        {'id': 8, 'name': 'Produit H', 'unit_price': 50, 'quantity': 8, 'description': '<b>incroyable</b>'},
+        {'id': 9, 'name': 'Produit I', 'unit_price': 40, 'quantity': 5, 'description': '<b>super</b>'},
+        {'id': 10, 'name': 'Produit J', 'unit_price': 80, 'quantity': 5, 'description': '<u>génial</u>'},
+      ]
+    }
+  },
+  computed: {
+    productsLength() {
+      return this.products.length;
     },
-    computed: {
-      productsSortedByPriceDesc() {
-        return this.products.sort((a, b) => b.unit_price - a.unit_price);
-      }
-    },
-    methods: {
-      isHigherPrice(product) {
-        return product.unit_price === this.productsSortedByPriceDesc[0].unit_price;
-      }
+    cheapestPrice() {
+      return Math.min(...this.products.map(product => product.unit_price));
     }
   }
+}
 </script>
 
 <template>
   <div>
-    <h1>Nos produits</h1>
-    <div class="products" v-if="products.length > 0">
-      <div :class="{'best' : isHigherPrice(product) }" v-for="product in productsSortedByPriceDesc" :key="product.id">
-        <h3>{{product.name}}</h3>
-
-        <div>
-          <p>
-            <b>Prix unitaire:</b> {{ product.unit_price }} € <br>
+    <h1 class="text-xl p-4 text-center uppercase mb-4 bg-sky-300 text-sky-800">
+      Nos produits<br>
+      Nombre de produits: {{ productsLength }}
+    </h1>
+    <div class="container mx-auto flex flex-wrap" v-if="products.length > 0">
+      <div class="bg-white mx-2 my-4 rounded shadow" :class="{'bg-green-500': product.unit_price === cheapestPrice}" v-for="product in products" :key="product.id">
+        <h3 class="text-xl text-center bg-sky-200 text-sky-500">{{ product.name }}</h3>
+        <img :src="'https://picsum.photos/140/100?random='+product.id" class="w-full card-img-top" alt="..."/>
+        <div class="py-2 px-4">
+          <p class="text-sm">
+            <b>Prix unitaire:</b> {{ product.unit_price }} €<br>
             <b>Quantité:</b> {{ product.quantity }} en stock
           </p>
-          <div v-html="product.description">
+          <div class="text-sm" v-html="product.description">
           </div>
         </div>
       </div>
     </div>
     <div v-else>
-      <p>Pas de produits en BDD</p>
+      <p>Il n'y a pas encore de produits !</p>
     </div>
   </div>
 </template>
 
 <style scoped>
-  .best {
-    border: 3px solid red;
-  }
+
 </style>
