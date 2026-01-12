@@ -34,7 +34,7 @@ export default {
       Nombre de produits: {{ productsLength }}
     </h1>
     <div class="container mx-auto flex flex-wrap" v-if="products.length > 0">
-      <div class="bg-white mx-2 my-4 rounded shadow" :class="{'bg-green-500': product.unit_price === cheapestPrice}" v-for="product in products" :key="product.id">
+      <div class="bg-white mx-2 my-4 rounded shadow" :class="{'dark:bg-green-500': product.unit_price === cheapestPrice}" v-for="product in products" :key="product.id">
         <h3 class="text-xl text-center bg-sky-200 text-sky-500">{{ product.name }}</h3>
         <img :src="'https://picsum.photos/140/100?random='+product.id" class="w-full card-img-top" alt="..."/>
         <div class="py-2 px-4">
