@@ -37,7 +37,7 @@ import { RouterLink } from 'vue-router'
           <div class="card-action">Explorer &rarr;</div>
         </RouterLink>
 
-        <RouterLink to="/first" class="card">
+        <RouterLink to="/exone" class="card">
           <div class="card-content">
             <div class="icon-box">🧪</div>
             <h3>Premier Exercice</h3>
