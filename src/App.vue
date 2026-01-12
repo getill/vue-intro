@@ -10,7 +10,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <nav>
           <RouterLink to="/">Acceuil</RouterLink>
           <RouterLink to="/methods">Methods</RouterLink>
-          <RouterLink to="/first">1er exercice</RouterLink>
+          <RouterLink to="/exone">1er exercice</RouterLink>
         </nav>
       </div>
     </header>
@@ -51,6 +51,7 @@ nav a:hover {
   color: #fff;
 }
 
+/*noinspection CssUnusedSymbol*/
 nav a.router-link-active {
   color: #42b983;
   font-weight: bold;

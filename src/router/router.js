@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from '../views/HomeView.vue'
 import ProductView from '../views/ProductView.vue'
-import FirstView from '../views/FirstView.vue'
+import ExoneView from '../views/ExoneView.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -18,9 +18,9 @@ const router = createRouter({
             component: ProductView
         },
         {
-            path: '/first',
+            path: '/exone',
             name: 'first exercise',
-            component: FirstView
+            component: ExoneView
         }
     ]
 })
